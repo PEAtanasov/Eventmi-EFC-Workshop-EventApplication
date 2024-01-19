@@ -7,6 +7,14 @@ namespace Eventmi.Infrastructure.Data.Common;
 public interface IRepository
 {
     /// <summary>
+    /// Returns item with given id
+    /// </summary>
+    /// <typeparam name="T">type of item</typeparam>
+    /// <param name="id">item identifier</param>
+    /// <returns></returns>
+    Task<T?> GetByIdAsync<T>(int id) where T : class;
+
+    /// <summary>
     /// Adding item in the database
     /// </summary>
     /// <typeparam name="T">type of item</typeparam>

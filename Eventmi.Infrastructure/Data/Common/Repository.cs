@@ -27,7 +27,7 @@ public class Repository : IRepository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    private DbSet<T> GetDbSet<T>() where T : class => dbContext.Set<T>();
+    private DbSet<T> DbSet<T>() where T : class => dbContext.Set<T>();
 
     /// <summary>
     /// Add given entity to the DbSet
@@ -38,7 +38,7 @@ public class Repository : IRepository
     public async Task AddAsync<T>(T entity) where T : class
     {
         //dbContext.Add(entity);
-        await GetDbSet<T>().AddAsync(entity);
+        await DbSet<T>().AddAsync(entity);
         //await dbContext.Set<T>().AddAsync(entity);
     }
 
@@ -50,7 +50,7 @@ public class Repository : IRepository
     public IQueryable<T> GetAll<T>() where T : class
     {
         //return dbContext.Set<T>();
-        return GetDbSet<T>();
+        return DbSet<T>();
     }
 
     /// <summary>
@@ -61,7 +61,7 @@ public class Repository : IRepository
     public IQueryable<T> GetAllReadOnly<T>() where T : class
     {
         //return dbContext.Set<T>().AsNoTracking();
-        return GetDbSet<T>().AsNoTracking();
+        return DbSet<T>().AsNoTracking();
     }
 
     /// <summary>
@@ -69,10 +69,10 @@ public class Repository : IRepository
     /// </summary>
     /// <typeparam name="T">Type of items</typeparam>
     /// <returns></returns>
-    public IQueryable<T> GetAllWithDeleted<T>()  where T: class, IDeletable
+    public IQueryable<T> GetAllWithDeleted<T>() where T : class, IDeletable
     {
         //return dbContext.Set<T>().IgnoreQueryFilters();
-        return GetDbSet<T>().IgnoreQueryFilters();
+        return DbSet<T>().IgnoreQueryFilters();
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public class Repository : IRepository
     {
         //return dbContext.Set<T>().AsNoTracking().Where(e=>e.IsActive== true|| e.IsActive==false);
         //return dbContext.Set<T>().AsNoTracking().IgnoreQueryFilters();
-        return GetDbSet<T>().AsNoTracking().IgnoreQueryFilters();
+        return DbSet<T>().AsNoTracking().IgnoreQueryFilters();
     }
 
     /// <summary>
@@ -106,5 +106,16 @@ public class Repository : IRepository
     public async Task<int> SaveChangesAsync()
     {
         return await dbContext.SaveChangesAsync();
+    }
+
+    /// <summary>
+    /// Returns item with given id
+    /// </summary>
+    /// <typeparam name="T">type of item</typeparam>
+    /// <param name="id">item identifier</param>
+    /// <returns></returns>
+    public async Task<T?> GetByIdAsync<T>(int id) where T : class
+    {     
+        return await DbSet<T>().FindAsync(id);
     }
 }
