@@ -23,19 +23,20 @@ public class EventDto
     /// </summary>
     [Required(ErrorMessage = UserMessageConstants.Required)]
     [Display(Name = "Start of the event")]
-    public DateTime Start { get; set; }
+    public DateTime Start { get; set; } = DateTime.Now.Date;
 
     /// <summary>
     /// End of the event
     /// </summary>
     [Required(ErrorMessage = UserMessageConstants.Required)]
-    [Display(Name = "End of the event")]
-    public DateTime End { get; set; }
+    [Display(Name = "End of the event")]   
+    public DateTime End { get; set; } = DateTime.Now.Date;
     /// <summary>
     /// Place
     /// </summary>
     [Required(ErrorMessage = UserMessageConstants.Required)]
     [Display(Name = "Place")]
+    [StringLength(80, MinimumLength = 3, ErrorMessage = UserMessageConstants.StringLength)]
     public string StreetAddress { get; set; } = string.Empty;
     /// <summary>
     /// Town

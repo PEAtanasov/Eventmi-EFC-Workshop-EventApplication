@@ -11,6 +11,7 @@ namespace Eventmi.Core.Models
         /// <summary>
         /// Town identifier
         /// </summary>
+        
         public int Id { get; set; }
 
         /// <summary>

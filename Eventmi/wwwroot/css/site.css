@@ -16,3 +16,23 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/.mb-3{
+    color: darkgray
+}
+
+/.form-select{
+    color: aquamarine
+}
+
+/.form-label{
+    color: orange;
+    Background: blue
+}
+/.form-select:hover {
+    cursor: pointer;
+}
+
+/.btn btn-primary{
+    color: red
+}

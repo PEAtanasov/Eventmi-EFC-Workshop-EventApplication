@@ -2,7 +2,9 @@
 using Eventmi.Core.Contracts;
 using Eventmi.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Reflection;
 
 namespace Eventmi.Controllers
 {
@@ -70,7 +72,9 @@ namespace Eventmi.Controllers
                 try
                 {
                     await eventService.EditAsync(model);
-                    return RedirectToAction(nameof(Index));
+                    
+                    return RedirectToAction(nameof(EventEditedSuccesfully), model);
+                    // RedirectToAction(nameof(Index));
                 }
                 catch (ArgumentException ex)
                 {
@@ -107,11 +111,28 @@ namespace Eventmi.Controllers
             return View(await eventService.GetByIdAsync(id));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EventEditedSuccesfully(EventDto model)
+        {
+            ViewBag.Events =  await GetAllEvents();
+
+            return View(model);
+        }
+
         private async Task<IEnumerable<SelectListItem>> GetTownsAsync()
         {
             var towns = await eventService.GetAllTownsAsync();
 
-            return towns.Select(x => new SelectListItem (x.Name, x.Id.ToString()));
+            return towns.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
         }
+
+        private async Task<IEnumerable<EventDto>> GetAllEvents()
+        {
+            var events= await eventService.GetAllAsync();
+
+            return events;
+        }
+
+        
     }
 }

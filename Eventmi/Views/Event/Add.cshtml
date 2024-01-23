@@ -12,34 +12,37 @@
     <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
         <form asp-action="Add" method="post">
             <div class="mb-3">
-                <label asp-for="Name" class="form-label">Name</label>
+                <label asp-for="Name" class="form-label"></label>
                 <input asp-for="Name" class="form-control" aria-required="true" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Start" class="form-label">Start</label>
+                <label asp-for="Start" class="form-label"></label>
                 <input asp-for="Start" class="form-control" aria-required="true" />
                 <span asp-validation-for="Start" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="End" class="form-label">End</label>
+                <label asp-for="End" class="form-label"></label>
                 <input asp-for="End" class="form-control" aria-required="true" />
                 <span asp-validation-for="End" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="StreetAddress" class="form-label">Place</label>
+                <label asp-for="StreetAddress" class="form-label"></label>
                 <input asp-for="StreetAddress" class="form-control" aria-required="true" />
-                <span asp-validation-for="End" class="text-danger"></span>
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="TownId" class="form-label">Place</label>
-                <select asp-for="TownId" class="form-control" asp-items="towns"></select>
+                <label asp-for="TownId" class="form-label"></label>
+                <select asp-for="TownId" class="form-select" asp-items="towns"></select>
                 <span asp-validation-for="TownId" class="text-danger"></span>
             </div>
             <div class="mb-3 text-center">
                 <input class="btn btn-primary" type="submit" value="Add" />
             </div>
+
         </form>
+        <a href="https://google.com" class="btn btn-primary" target="_blank" >Google</a>
+       
     </div>
 </div>
 
